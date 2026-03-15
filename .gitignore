@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Lock files
+package-lock.json
+yarn.lock
+
+# Environment
+backend/.env
+
+# Models & large binary assets
+public/models/
+
+# Backend binary tools
+backend/bin/
+backend/audios/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Assets (original source models)
+assets/
