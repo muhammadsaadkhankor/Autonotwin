@@ -9,6 +9,7 @@ export const ChatProvider = ({ children }) => {
   const [avatarMessages, setAvatarMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const loadingRef = useRef(false);
   const [listening, setListening] = useState(false);
   const [speechSupported, setSpeechSupported] = useState(false);
   const recognitionRef = useRef(null);
@@ -38,9 +39,10 @@ export const ChatProvider = ({ children }) => {
 
   // Send text message to backend /tts
   const sendMessage = useCallback(async (text) => {
-    if (!text.trim() || loading) return;
+    if (!text.trim() || loadingRef.current) return;
 
     setMessages((prev) => [...prev, { role: "user", text }]);
+    loadingRef.current = true;
     setLoading(true);
 
     try {
@@ -60,15 +62,16 @@ export const ChatProvider = ({ children }) => {
       console.error("Backend error:", err);
       setMessages((prev) => [...prev, { role: "error", text: "Could not reach the backend server." }]);
     } finally {
+      loadingRef.current = false;
       setLoading(false);
     }
-  }, [loading]);
+  }, []);
 
   // Send audio to backend /sts with transcribed text
   const sendAudio = useCallback(async (transcribedText) => {
-    if (!transcribedText?.trim() || loading) return;
+    if (!transcribedText?.trim() || loadingRef.current) return;
     await sendMessage(transcribedText);
-  }, [loading, sendMessage]);
+  }, [sendMessage]);
 
   // Start speech recognition — returns a promise that resolves with transcript
   const startListening = useCallback(() => {
