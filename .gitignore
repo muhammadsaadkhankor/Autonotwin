@@ -13,9 +13,11 @@ backend/.env
 
 # Models & large binary assets
 public/models/
+public.zip
 
 # Backend binary tools
 backend/bin/
+backend/bin.zip
 backend/audios/
 
 # OS files
