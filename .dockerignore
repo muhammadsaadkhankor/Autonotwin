@@ -1,0 +1,11 @@
+node_modules
+backend/node_modules
+backend/audios/*.mp3
+backend/audios/*.wav
+backend/audios/*.json
+backend/bin.zip
+public.zip
+.git
+.vscode
+.idea
+dist
