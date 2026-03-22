@@ -1,0 +1,11 @@
+services:
+  autonotwin:
+    build: .
+    ports:
+      - "5173:5173"
+      - "3000:3000"
+    volumes:
+      - ./backend/.env:/app/backend/.env
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    restart: unless-stopped
