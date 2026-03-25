@@ -27,7 +27,8 @@ if (-not (Test-Path "$ROOT_DIR\backend\bin\rhubarb")) {
     Expand-Archive -Path "$ROOT_DIR\backend\bin.zip" -DestinationPath "$ROOT_DIR\backend\" -Force
     New-Item -ItemType Directory -Path "$ROOT_DIR\backend\bin" -Force | Out-Null
     Move-Item "$ROOT_DIR\backend\rhubarb" "$ROOT_DIR\backend\bin\rhubarb" -Force
-    Remove-Item "$ROOT_DIR\backend\extras", "$ROOT_DIR\backend\tests", "$ROOT_DIR\backend\res",
+    Move-Item "$ROOT_DIR\backend\res" "$ROOT_DIR\backend\bin\res" -Force
+    Remove-Item "$ROOT_DIR\backend\extras", "$ROOT_DIR\backend\tests",
         "$ROOT_DIR\backend\CHANGELOG.md", "$ROOT_DIR\backend\LICENSE.md", "$ROOT_DIR\backend\README.adoc" -Recurse -Force -ErrorAction SilentlyContinue
     Remove-Item "$ROOT_DIR\backend\bin.zip" -Force
     Write-Host "    Done."

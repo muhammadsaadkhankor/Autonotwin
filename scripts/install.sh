@@ -30,8 +30,9 @@ if [ ! -f "$ROOT_DIR/backend/bin/rhubarb" ]; then
   unzip -o "$ROOT_DIR/backend/bin.zip" -d "$ROOT_DIR/backend/"
   mkdir -p "$ROOT_DIR/backend/bin"
   mv "$ROOT_DIR/backend/rhubarb" "$ROOT_DIR/backend/bin/rhubarb"
+  mv "$ROOT_DIR/backend/res" "$ROOT_DIR/backend/bin/res"
   chmod +x "$ROOT_DIR/backend/bin/rhubarb"
-  rm -rf "$ROOT_DIR/backend/extras" "$ROOT_DIR/backend/tests" "$ROOT_DIR/backend/res" \
+  rm -rf "$ROOT_DIR/backend/extras" "$ROOT_DIR/backend/tests" \
          "$ROOT_DIR/backend/CHANGELOG.md" "$ROOT_DIR/backend/LICENSE.md" "$ROOT_DIR/backend/README.adoc"
   rm -f "$ROOT_DIR/backend/bin.zip"
   echo "    Done. rhubarb is executable."

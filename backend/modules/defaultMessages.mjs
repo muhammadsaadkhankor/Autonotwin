@@ -5,6 +5,8 @@ dotenv.config();
 const openAIApiKey = process.env.OPENAI_API_KEY;
 const elevenLabsApiKey = process.env.ELEVEN_LABS_API_KEY;
 
+const useLocalVoice = process.env.USE_LOCAL_VOICE === "true";
+
 async function sendDefaultMessages({ userMessage }) {
   if (!userMessage) {
     return [
@@ -25,7 +27,8 @@ async function sendDefaultMessages({ userMessage }) {
     ];
   }
 
-  if (!elevenLabsApiKey || openAIApiKey === "<your-openai-api-key>") {
+  const voiceReady = useLocalVoice || !!elevenLabsApiKey;
+  if (!voiceReady) {
     return [
       {
         text: "Please don't forget to add your API keys!",
